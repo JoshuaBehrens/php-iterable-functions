@@ -27,6 +27,11 @@ if (!function_exists('iterable_to_array')) {
     /**
      * Copy the iterable into an array. If the iterable is already an array, return it.
      *
+     * @psalm-template TKey
+     * @psalm-template TValue
+     * @psalm-param iterable<TKey, TValue>|array<TKey, TValue>|\Traversable<TKey, TValue> $iterable
+     * @psalm-return array<TKey, TValue>
+     *
      * @param  iterable|array|\Traversable $iterable
      * @param  bool                        $use_keys [optional] Whether to use the iterator element keys as index.
      * @return array
@@ -41,6 +46,11 @@ if (!function_exists('iterable_to_traversable')) {
 
     /**
      * If the iterable is not intance of \Traversable, it is an array => convert it to an ArrayIterator.
+     *
+     * @psalm-template TKey
+     * @psalm-template TValue
+     * @psalm-param iterable<TKey, TValue>|array<TKey, TValue>|\Traversable<TKey, TValue> $iterable
+     * @psalm-return \Traversable<TKey, TValue>
      *
      * @param  iterable|array|\Traversable $iterable
      * @return \Traversable
@@ -66,6 +76,12 @@ if (!function_exists('iterable_filter')) {
 
     /**
      * Filters an iterable.
+     *
+     * @psalm-template TKey
+     * @psalm-template TValue
+     * @psalm-param iterable<TKey, TValue>|array<TKey, TValue>|\Traversable<TKey, TValue> $iterable
+     * @psalm-param callable(TValue):bool|null $filter
+     * @psalm-return array<TKey, TValue>|CallbackFilterIterator<TKey, TValue>
      *
      * @param iterable|array|\Traversable $iterable
      * @param callable                    $filter
